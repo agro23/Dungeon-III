@@ -1,0 +1,135 @@
+@font-face {
+  font-family: myFont;
+  src: url(../fonts/Immortal.ttf);
+}
+
+body {
+  background-image: url("../img/bg.jpg");
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: repeat;
+  font-family: myFont;
+}
+
+h1 {
+  color: red;
+}
+
+ul {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+li {
+  display: inline;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-size: 20px;
+}
+
+.row {
+  margin-top: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+  flex-wrap: wrap;
+}
+.row > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 20px;
+}
+
+.btn-danger {
+  margin-top: 10px;
+}
+
+.well {
+  padding-top:120px;
+  padding-bottom:110px;
+  padding-right:90px;
+  padding-left:90px;
+  background-color: rgba(200, 200, 200, 0.0);
+  border: none;
+}
+
+.well-lesspadded {
+  padding-top:100px;
+  padding-bottom:110px;
+  padding-right:90px;
+  padding-left:90px;
+  background-color: rgba(200, 200, 200, 0.0);
+  border: none;
+  margin-top: -50px;
+  margin-bottom: -50px;
+  background-image: url("../img/parchmentExtraWide.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.well-gametop {
+  padding-top:100px;
+  padding-bottom:110px;
+  padding-right:90px;
+  padding-left:90px;
+  background-color: rgba(200, 200, 200, 0.0);
+  border: none;
+  margin-top: -50px;
+  margin-bottom: 10em;
+  background-image: url("../img/parchmentExtraWide.png" );
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  font-size: 1.75em;
+}
+
+.detail {
+  background-image: url("../img/parchment.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.update-form {
+  background-image: url("../img/parchmentWide2.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.footer {
+  background-image: url("../img/parchmentWide2.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.viewer, .adder {
+  background-image: url("../img/verywide.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.flip {
+  -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+.title {
+  background-color: #000;
+}
+
+.title-font{
+  font-size: 2.4em;
+}
+
+img{
+  max-width: 100%;
+}

@@ -1,0 +1,56 @@
+@{
+  Layout = "_Layout";
+}
+
+<div class = "container well-gametop text-center">
+  <h2>You are @Model["pc"].GetName()</h2>
+    <!-- <p>if it's not Dark, you can see the following...</p> -->
+    @if(@Model["room"].GetLight() == true) {
+      <p>You are in: @Model["room"].GetName()</p>
+      <p>@Model["room"].GetFullDescription()</p>
+
+
+      @if(@Model["npc"].Count > 0)
+      {
+          @foreach(var npc in @Model["npc"])
+          {
+              <p>There is a @npc.GetName() here.</p>
+          }
+      }
+
+      @if(@Model["item"].Count > 0)
+      {
+          @foreach(var items in @Model["item"])
+          {
+              <p>There is a @items.GetName() here.</p>
+          }
+      }
+
+      <p>You can do the following things: </p>
+        <ul>
+              <li>@Model["command"], Move</li>
+        </ul>
+
+        <p>There are exits to the: </p>
+        @if (@Model["map"].Count > 0)
+        {
+          Dictionary<int, int[]> temp = @Model["map"];
+          int[] x = temp[@Model["room"].GetId()];
+          string[] exits = new string[] {"Dummy", "North", "Northeast", "East", "Southeast", "South", "Southwest", "West", "Northwest", "Up", "Down"};
+          for (int exit= 1; exit < x.Length; exit++)
+          {
+
+              if (x[exit] !=0)
+              {
+                  <a href="/game/room/@exit">@exits[exit]</a>
+              }
+
+          }
+
+        }
+      }
+      else
+      {
+          <h2>It's too dark to see!</h2>
+      }
+</div>

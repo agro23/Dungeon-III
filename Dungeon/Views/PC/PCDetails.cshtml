@@ -1,0 +1,46 @@
+@{
+  Layout = "_Layout";
+}
+<div class="container text-center">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="well detail ">
+        <br><br>
+        <h1>PC Details</h1>
+        <h3>PC: @Model.GetName()</h3>
+        <h3>Type: @Model.GetPCType()</h3>
+        <h3>HP: @Model.GetHP()</h3>
+        <h3>AC: @Model.GetAC()</h3>
+        <h3>Damage: @Model.GetDamage()</h3>
+        <h3>LVL: @Model.GetLVL()</h3>
+        <h3>EXP: @Model.GetEXP()</h3>
+        <h3>Room: @Model.GetRoomId()</h3>
+        <br><br>
+      </div>
+    </div>
+    <hr>
+    <div class="col-sm-8">
+      <div class="well update-form">
+        <form class="form-group" action="/pcs/update/@Model.GetId()" method="post">
+          <label for="updatedPCName">Character Name</label>
+          <input class="form-control" type="text" name="updatedPCName" value="@Model.GetName()" required>
+          <label for="updatedPCName">Character Type</label>
+          <input class="form-control" type="text" name="updatedPCType" value="@Model.GetPCType()" required>
+          <label for="updatedPCHP">Hit Points</label>
+          <input class="form-control" type="number" name="updatedPCHP" value="@Model.GetHP()" >
+          <label for="updatedPCAC">Armor Class</label>
+          <input class="form-control" type="number" name="updatedPCAC" value="@Model.GetAC()" >
+          <label for="updatedPCDamage">Damage</label>
+          <input class="form-control" type="number" name="updatedPCDamage" value="@Model.GetDamage()">
+          <label for="updatedPCLVL">Level</label>
+          <input class="form-control" type="number" name="updatedPCLVL" value="@Model.GetLVL()" >
+          <label for="updatedPCEXP">Experience Points</label>
+          <input class="form-control" type="number" name="updatedPCEXP" value="@Model.GetEXP()" >
+          <label for="updatedRoomId">Starting Room</label>
+          <input class="form-control" type="number" name="updatedPCRoomId" value="@Model.GetRoomId()" >
+          <button type="submit" class="btn btn-danger">Update PC</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

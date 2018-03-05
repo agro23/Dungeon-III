@@ -1,0 +1,44 @@
+@{
+  Layout = "_Layout";
+}
+<div class="container text-center">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="well detail">
+        <br><br>
+        <h1>NPC Details</h1>
+        <h3>NPC: @Model.GetName()</h3>
+        <h3>Type: @Model.GetNPCType()</h3>
+        <h3>HP: @Model.GetHP()</h3>
+        <h3>AC: @Model.GetAC()</h3>
+        <h3>Damage: @Model.GetDamage()</h3>
+        <h3>LVL: @Model.GetLVL()</h3>
+        <h3>Room: @Model.GetRoomId()</h3>
+        <br><br>
+      </div>
+    </div>
+
+    <hr>
+    <div class="col-sm-8">
+      <div class = "well update-form">
+        <form class="form-group" action="/npcs/update/@Model.GetId()" method="post">
+          <label for="updatedNPCName">Non-Player Character Name</label>
+          <input class="form-control" type="text" name="updatedNPCName" value="@Model.GetName()" required>
+          <label for="updatedNPCType">Non-Player Character Type</label>
+          <input class="form-control" type="text" name="updatedNPCType" value="@Model.GetNPCType()" required>
+          <label for="updatedNPCHP">Hit Points</label>
+          <input class="form-control" type="number" name="updatedNPCHP" value="@Model.GetHP()" >
+          <label for="updatedNPCAC">Armor Class</label>
+          <input class="form-control" type="number" name="updatedNPCAC" value="@Model.GetAC()" >
+          <label for="updatedNPCDamage">Damage</label>
+          <input class="form-control" type="number" name="updatedNPCDamage" value="@Model.GetDamage()">
+          <label for="updatedNPCLVL">Level</label>
+          <input class="form-control" type="number" name="updatedNPCLVL" value="@Model.GetLVL()" >
+          <label for="updatedRoomId">Starting Room</label>
+          <input class="form-control" type="number" name="updatedRoomId" value="@Model.GetRoomId()">
+            <button type="submit" class="btn btn-danger">Update NPC</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

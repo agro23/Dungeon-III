@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 02, 2018 at 02:03 AM
+-- Generation Time: Mar 06, 2018 at 01:55 AM
 -- Server version: 5.6.35
 -- PHP Version: 7.0.15
 
@@ -66,7 +66,8 @@ CREATE TABLE `items` (
 
 INSERT INTO `items` (`id`, `name`, `type`, `special`, `magic`) VALUES
 (1, 'Nasty Sword', 'Weapon', '+5 Vorpal', 1),
-(2, 'Test Wand', 'Wand', 'USE-->\"It blows up in your face!\"-->DAM:6', 1);
+(2, 'Suit of Armor', 'Armor', '+5', 1),
+(3, 'Suit of Armor', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -145,19 +146,23 @@ CREATE TABLE `rooms` (
   `short_description` varchar(255) NOT NULL,
   `full_description` text NOT NULL,
   `light` tinyint(1) NOT NULL,
-  `commands` varchar(255) NOT NULL
+  `commands` varchar(255) NOT NULL,
+  `RoomMapId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `rooms`
 --
 
-INSERT INTO `rooms` (`id`, `name`, `short_description`, `full_description`, `light`, `commands`) VALUES
-(1, 'Foyer', 'An entryway into the dungeon.', 'A dank, smelly entryway. It leads into a long, dark corridor that seems to slope downwards. Cobwebs reach for you from the ceiling.', 1, 'Search, Look, Describe, Use'),
-(4, 'lil Meat Locker', 'This is the room where they keeps they meats.', 'A room of naked stone walls dripping with moisture, clumped with lichens, mushrooms, and green slime in places. It smells like rot to match the decaying carcasses of several unknown animals hung on a few hooks descending from a strange rack system of corroded rails running an odd network across the ceiling.', 0, 'Search, Get, Examine, Move'),
-(5, 'Test Room', '', '', 0, ''),
-(6, 'Another Room', '', '', 0, ''),
-(7, 'Hallway', 'Test', 'Test', 1, 'Move');
+INSERT INTO `rooms` (`id`, `name`, `short_description`, `full_description`, `light`, `commands`, `RoomMapId`) VALUES
+(1, 'Foyer', 'An entryway into the dungeon.', 'A dank, smelly entryway. It leads into a long, dark corridor that seems to slope downwards. Cobwebs reach for you from the ceiling.', 1, 'Search, Look, Describe, Use', 1),
+(2, 'lil Meat Locker', 'This is the room where they keeps they meats.', 'A room of naked stone walls dripping with moisture, clumped with lichens, mushrooms, and green slime in places. It smells like rot to match the decaying carcasses of several unknown animals hung on a few hooks descending from a strange rack system of corroded rails running an odd network across the ceiling.', 1, 'Search, Get, Examine, Move', 2),
+(3, 'Test Room', 'test', 'test', 1, 'test', 3),
+(4, 'Another Room', 'Test', 'Test', 1, 'Test', 4),
+(5, 'Hallway', 'Test', 'Test', 1, 'Move', 5),
+(8, 'Dining Hall', 'A small room with crude tables and a cooking fire.', 'What the short description said written large.', 1, 'Get, Eat', 0),
+(9, 'Throne Room', 'A throne room.', 'A really really big throne room.', 1, 'Sit', 0),
+(10, 'Chamber of Sorrows', 'derf', 'fred derf fred derf', 1, 'fred', 0);
 
 --
 -- Indexes for dumped tables
@@ -173,7 +178,9 @@ ALTER TABLE `contents`
 -- Indexes for table `inventory`
 --
 ALTER TABLE `inventory`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `items` (`items`),
+  ADD KEY `pcs` (`pcs`);
 
 --
 -- Indexes for table `items`
@@ -225,7 +232,7 @@ ALTER TABLE `inventory`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `loot`
 --
@@ -245,7 +252,18 @@ ALTER TABLE `pcs`
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `inventory`
+--
+ALTER TABLE `inventory`
+  ADD CONSTRAINT `inventory_ibfk_1` FOREIGN KEY (`items`) REFERENCES `items` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `inventory_ibfk_2` FOREIGN KEY (`pcs`) REFERENCES `pcs` (`id`) ON DELETE CASCADE;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

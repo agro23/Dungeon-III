@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Feb 28, 2018 at 01:54 AM
+-- Generation Time: Mar 06, 2018 at 01:55 AM
 -- Server version: 5.6.35
 -- PHP Version: 7.0.15
 
@@ -52,7 +52,15 @@ CREATE TABLE `inventory` (
 
 INSERT INTO `inventory` (`id`, `items`, `pcs`) VALUES
 (1, 21, 11),
-(2, 22, 11);
+(2, 22, 11),
+(3, 4, 4),
+(4, 5, 4),
+(5, 11, 8),
+(6, 12, 8),
+(7, 20, 12),
+(8, 21, 12),
+(9, 6, 4),
+(10, 7, 4);
 
 -- --------------------------------------------------------
 
@@ -86,7 +94,15 @@ CREATE TABLE `loot` (
 
 INSERT INTO `loot` (`id`, `items`, `npcs`) VALUES
 (1, 19, 11),
-(2, 20, 11);
+(2, 20, 11),
+(3, 2, 4),
+(4, 3, 4),
+(5, 9, 8),
+(6, 10, 8),
+(7, 18, 12),
+(8, 19, 12),
+(9, 4, 4),
+(10, 5, 4);
 
 -- --------------------------------------------------------
 
@@ -190,37 +206,37 @@ ALTER TABLE `rooms`
 -- AUTO_INCREMENT for table `contents`
 --
 ALTER TABLE `contents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `loot`
 --
 ALTER TABLE `loot`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `npcs`
 --
 ALTER TABLE `npcs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `pcs`
 --
 ALTER TABLE `pcs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

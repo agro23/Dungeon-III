@@ -122,7 +122,8 @@ namespace Dungeon.Tests
         testPC2.Save();
 
         //Act
-        testPC1.Update("Derf");
+        testPC1.Update("Derf", "", 0, 0, 0, 0, 0, 0);
+        // string, string, int, int, int, int, int, int
 
         //Assert
         Assert.AreNotEqual(testPC1.GetName(), testPC2.GetName());

@@ -29,7 +29,12 @@ namespace Dungeon.Controllers
     public ActionResult Details()
     {
       Item thisItem = Item.Find(Int32.Parse(Request.Form["id"]));
-      return View("ItemDetails", thisItem);
+      List<object> tempList = new List<object>{};
+      tempList.Add(Room.GetAll());
+      tempList.Add(thisItem);
+      // return View("ItemDetails", thisItem);
+      return View("ItemDetails", tempList);
+
     }
 
     [HttpPost("/items/update/{id}")]
@@ -44,11 +49,20 @@ namespace Dungeon.Controllers
       if (temp_MagicInt == 1){temp_MagicBool = true;}
       else {}
 
+
       thisItem.Update(temp_Name, temp_Type, temp_Special, temp_MagicBool);
 
       Item thisUpdatedItem = Item.Find(id);
 
-      return View("ItemDetails", thisUpdatedItem);
+      thisItem.AddToContents(Int32.Parse(Request.Form["id"])); // *****
+
+      List<object> tempList = new List<object>{};
+      tempList.Add(Room.GetAll());
+      tempList.Add(thisItem);
+
+      // return View("ItemDetails", thisUpdatedItem);
+      return View("ItemDetails", tempList);
+
     }
 
   }

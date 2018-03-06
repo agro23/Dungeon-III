@@ -229,6 +229,31 @@ namespace Dungeon.Models
 
         }
 
+        public void AddToContents(int roomId)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+
+            MySqlCommand cmd = new MySqlCommand("INSERT INTO contents VALUES (@ItemId, @RoomId);", conn);
+
+            MySqlParameter itemIdParameter = new MySqlParameter();
+            itemIdParameter.ParameterName = "@ItemId";
+            itemIdParameter.Value = _id;
+
+            MySqlParameter roomIdParameter = new MySqlParameter();
+            roomIdParameter.ParameterName = "@RoomId";
+            roomIdParameter.Value = roomId;
+
+            cmd.Parameters.Add(itemIdParameter);
+            cmd.ExecuteNonQuery();
+
+            if (conn != null)
+            {
+                conn.Close();
+            }
+
+        }
+
         public void Delete()
         {
             // Delete Item entirely

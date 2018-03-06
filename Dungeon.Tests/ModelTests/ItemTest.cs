@@ -67,7 +67,8 @@ namespace Dungeon.Tests
         testItem2.Save();
 
         //Act
-        testItem1.Update("Burnt Torch");
+        testItem1.Update("Burnt Torch", "", "", true);
+        // string, string, string, bool
 
         //Assert
         Assert.AreNotEqual(testItem1.GetName(), testItem2.GetName());

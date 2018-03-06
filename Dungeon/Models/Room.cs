@@ -18,7 +18,7 @@ namespace Dungeon.Models
         private int _id;
         // We no longer declare _RoomId here
 
-        public Room(string name, string shortDescription="", string fullDescription="", bool light=false, string commands="", int id = 0)
+        public Room(string name, string shortDescription="", string fullDescription="", bool light=true, string commands="", int id = 0)
         {
             _name = name;
             _shortDescription = shortDescription;
@@ -170,7 +170,6 @@ namespace Dungeon.Models
             // light
             MySqlParameter light = new MySqlParameter();
             light.ParameterName = "@newLight";
-            Console.WriteLine("Light is " + newLight);
             if (newLight)
             {
                 light.Value = 1;
@@ -201,7 +200,8 @@ namespace Dungeon.Models
             MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"SELECT * FROM rooms WHERE id = (@searchId);";
+            cmd.CommandText = @"SELECT * FROM `rooms` WHERE id = (@searchId);";
+            // cmd.CommandText = @"SELECT * FROM `rooms` WHERE id = 3;";
 
             MySqlParameter searchId = new MySqlParameter();
             searchId.ParameterName = "@searchId";
@@ -213,7 +213,7 @@ namespace Dungeon.Models
             string roomName = "";
             string roomShortDescription = "";
             string roomFullDescription = "";
-            bool roomLight = false;
+            bool roomLight = false; // let's see what happens
             string roomCommands = "";
 
             while(rdr.Read())

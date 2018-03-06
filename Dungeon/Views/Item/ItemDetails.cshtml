@@ -7,27 +7,46 @@
       <div class="well detail">
         <br><br>
         <h1>Item Details</h1>
-        <h3>Item: @Model.GetName()</h3>
-        <h3>Type: @Model.GetItemType()</h3>
-        <h3>Special: @Model.GetSpecial()</h3>
-        <h3>Magic: @Model.GetMagic()</h3>
+        <h3>Item: @Model[1].GetName()</h3>
+        <h3>Type: @Model[1].GetItemType()</h3>
+        <h3>Special: @Model[1].GetSpecial()</h3>
+        <h3>Magic: @Model[1].GetMagic()</h3>
         <br><br>
       </div>
     </div>
     <div class="col-sm-8">
       <div class="well update-form">
-        <form class="form-group" action="/items/update/@Model.GetId()" method="post">
+        <form class="form-group" action="/items/update/@Model[1].GetId()" method="post">
           <label for="updatedPCName">Item Name</label>
-          <input class="form-control" type="text" name="updatedItemName" value="@Model.GetName()" required>
+          <input class="form-control" type="text" name="updatedItemName" value="@Model[1].GetName()" required>
           <label for="updatedPCName">Item Type</label>
-          <input class="form-control" type="text" name="updatedItemType" value="@Model.GetItemType()">
+          <input class="form-control" type="text" name="updatedItemType" value="@Model[1].GetItemType()">
           <label for="updatedPCName">Special Note</label>
-          <input class="form-control" type="text" name="updatedItemSpecial" value="@Model.GetSpecial()">
+          <input class="form-control" type="text" name="updatedItemSpecial" value="@Model[1].GetSpecial()">
           <label for="updatedPCName">Magic</label>
           <select class="form-control" name="updatedItemMagic">
             <option value="0">False</option>
             <option value="1">True</option>
           </select>
+
+
+          <div class="well viewer">
+            <h3>Place item in which room?</h3>
+              <select class="form-control" name="id" id="id">
+              <option value="0">Empty</option>
+              @{
+                if (@Model[0].Count > 0)
+                {
+                  foreach (var room in @Model[0])
+                  {
+                    <option value="@room.GetId()">@room.GetName()</option>
+                  }
+                }
+              }
+              </select>
+          </div>
+
+
           <button  type="submit" class="btn btn-danger">Update Item</button>
         </form>
       </div>

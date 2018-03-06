@@ -123,7 +123,8 @@ namespace Dungeon.Tests
             testRoom2.Save();
 
             //Act
-            testRoom1.Update("Foyer");
+            testRoom1.Update("Foyer", "", "", true, "", 0);
+            // string, string, string, bool, string, int
 
             //Assert
             Assert.AreNotEqual(testRoom1.GetName(), testRoom2.GetName());

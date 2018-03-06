@@ -121,7 +121,8 @@ namespace Dungeon.Tests
         testNPC2.Save();
 
         //Act
-        testNPC1.Update("James Orc");
+        testNPC1.Update("James Orc", "", 0,0,0,0,0);
+
 
         //Assert
         Assert.AreNotEqual(testNPC1.GetName(), testNPC2.GetName());

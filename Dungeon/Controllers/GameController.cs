@@ -27,24 +27,46 @@ namespace Dungeon.Controllers
           return View("GameIndex", myGame);
         }
 
-        [HttpGet("/game/room{id}")]
-        public ActionResult Move()
+        [HttpGet("/game/room/{roomId}")]
+        public ActionResult Move(int roomId)
         {
 
-          // PC newPC = PC.Find(2);
-          // Dictionary<int, int[]> myMap = new Dictionary<int, int[]>{};
-          // Dictionary<string, object> myGame = new Dictionary<string, object>{{"room", Room.Find(newPC.GetRoomId()) }};
-          // //           Dictionary<string, object> myGame = new Dictionary<string, object>{"room", Room.Find(PC.GetRoomId()) };
-          // myGame.Add("pc", PC.Find(newPC.GetId()));
-          // myGame.Add("npc", Game.GetAllNPCs(newPC.GetRoomId()));
-          // myGame.Add("item", Game.GetAllItems(newPC.GetRoomId()));
-          //
-          // myGame.Add("command", Room.Find(newPC.GetRoomId()).GetCommands());
-          //
-          // myMap = Game.GetMap();
-          // myGame.Add("map", myMap);
+          PC newPC = PC.Find(2);
+          newPC.SetRoomId(roomId);
+          Dictionary<int, int[]> myMap = new Dictionary<int, int[]>{};
+          Dictionary<string, object> myGame = new Dictionary<string, object>{{"room", Room.Find(newPC.GetRoomId()) }};
+          //           Dictionary<string, object> myGame = new Dictionary<string, object>{"room", Room.Find(PC.GetRoomId()) };
+          myGame.Add("pc", PC.Find(newPC.GetId()));
+          myGame.Add("npc", Game.GetAllNPCs(newPC.GetRoomId()));
+          myGame.Add("item", Game.GetAllItems(newPC.GetRoomId()));
+
+          myGame.Add("command", Room.Find(newPC.GetRoomId()).GetCommands());
+
+          myMap = Game.GetMap();
+          myGame.Add("map", myMap);
           return View("GameIndex", myGame);
         }
+
+        [HttpGet("/game/look/{roomId}")]
+        public ActionResult Look(int roomId)
+        {
+
+          PC newPC = PC.Find(2);
+          newPC.SetRoomId(roomId);
+          Dictionary<int, int[]> myMap = new Dictionary<int, int[]>{};
+          Dictionary<string, object> myGame = new Dictionary<string, object>{{"room", Room.Find(newPC.GetRoomId()) }};
+          //           Dictionary<string, object> myGame = new Dictionary<string, object>{"room", Room.Find(PC.GetRoomId()) };
+          myGame.Add("pc", PC.Find(newPC.GetId()));
+          myGame.Add("npc", Game.GetAllNPCs(newPC.GetRoomId()));
+          myGame.Add("item", Game.GetAllItems(newPC.GetRoomId()));
+
+          myGame.Add("command", Room.Find(newPC.GetRoomId()).GetCommands());
+
+          myMap = Game.GetMap();
+          myGame.Add("map", myMap);
+          return View("Look", myGame);
+        }
+
 
 
         // [HttpPost("/rooms")]

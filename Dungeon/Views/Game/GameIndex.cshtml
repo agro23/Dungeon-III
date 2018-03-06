@@ -7,7 +7,7 @@
     <!-- <p>if it's not Dark, you can see the following...</p> -->
     @if(@Model["room"].GetLight() == true) {
       <p>You are in: @Model["room"].GetName()</p>
-      <p>@Model["room"].GetFullDescription()</p>
+      <p>@Model["room"].GetShortDescription()</p>
 
 
       @if(@Model["npc"].Count > 0)
@@ -28,7 +28,7 @@
 
       <p>You can do the following things: </p>
         <ul>
-              <li>@Model["command"], Move</li>
+              <li>@Model["command"], Move, <a href="/game/look/@Model["room"].GetId()">Look</a></li>
         </ul>
 
         <p>There are exits to the: </p>
@@ -36,13 +36,13 @@
         {
           Dictionary<int, int[]> temp = @Model["map"];
           int[] x = temp[@Model["room"].GetId()];
-          string[] exits = new string[] {"Dummy", "North", "Northeast", "East", "Southeast", "South", "Southwest", "West", "Northwest", "Up", "Down"};
-          for (int exit= 1; exit < x.Length; exit++)
+          string[] exits = new string[] {"North", "Northeast", "East", "Southeast", "South", "Southwest", "West", "Northwest", "Up", "Down", "Hidden"};
+          for (int exit= 0; exit < x.Length; exit++)
           {
 
               if (x[exit] !=0)
               {
-                  <a href="/game/room/@exit">@exits[exit]</a>
+                  <a href="/game/room/@x[exit]">@exits[exit]</a>
               }
 
           }

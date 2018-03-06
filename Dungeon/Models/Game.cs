@@ -11,23 +11,23 @@ namespace Dungeon.Models
     public class Game
     {
         private string _name;
-        // private string _shortDescription;
-        // private string _fullDescription;
-        // private bool _light;
-        // private string _commands;
-        // private int _id;
+        private string _shortDescription;
+        private string _fullDescription;
+        private bool _light;
+        private string _commands;
+        private int _id;
         // We no longer declare _RoomId here
 
-        public Game(string name)
+        // public Game(string name)
 
-        // public Game(string name, string shortDescription="", string fullDescription="", bool light=false, string commands="", int id = 0)
+        public Game(string name, string shortDescription="", string fullDescription="", bool light=true, string commands="", int id = 0)
         {
             _name = name;
-            // _shortDescription = shortDescription;
-            // _fullDescription = fullDescription;
-            // _light = light;
-            // _commands = commands;
-            // _id = id;
+            _shortDescription = shortDescription;
+            _fullDescription = fullDescription;
+            _light = light;
+            _commands = commands;
+            _id = id;
         }
 
         // public override bool Equals(System.Object otherGame)

@@ -91,6 +91,11 @@ namespace Dungeon.Models
             return _roomId;
         }
 
+        public void SetRoomId(int roomId)
+        {
+             _roomId = roomId;
+        }
+
         public int GetId()
         {
             return _id;

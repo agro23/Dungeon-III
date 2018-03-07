@@ -35,12 +35,19 @@ namespace Dungeon.Controllers
         [HttpGet("/game/room/{roomId}")]
         public ActionResult Move(int roomId)
         {
-
+          string message = "";
           PC newPC = PC.Find(2);
-          newPC.SetRoomId(roomId);
-          newPC.Update(newPC.GetName(), newPC.GetPCType(), newPC.GetHP(), newPC.GetAC(), newPC.GetDamage(), newPC.GetLVL(), newPC.GetEXP(), newPC.GetRoomId());
-          Console.WriteLine("newPC thinks its room is: " + newPC.GetRoomId());
-
+          Room tempRoom = Room.Find(roomId);
+          if ( newPC.HasLight() )
+          {
+              newPC.SetRoomId(roomId);
+              newPC.Update(newPC.GetName(), newPC.GetPCType(), newPC.GetHP(), newPC.GetAC(), newPC.GetDamage(), newPC.GetLVL(), newPC.GetEXP(), newPC.GetRoomId());
+              Console.WriteLine("newPC thinks its room is: " + newPC.GetRoomId());
+          }
+          else
+          {
+              message="It's too dark to go that way";
+          }
           Dictionary<int, int[]> myMap = new Dictionary<int, int[]>{};
           Dictionary<string, object> myGame = new Dictionary<string, object>{{"room", Room.Find(newPC.GetRoomId()) }};
           //           Dictionary<string, object> myGame = new Dictionary<string, object>{"room", Room.Find(PC.GetRoomId()) };
@@ -56,6 +63,9 @@ namespace Dungeon.Controllers
           Console.WriteLine("Room inside Move is: " + Room.Find(newPC.GetRoomId()).GetName());
           Console.WriteLine("in Move PC thinks its room # is: " + newPC.GetRoomId());
 
+          // if (message !=""){
+          //     <APPEND MESSAGE>
+          // }
 
           return View("GameIndex", myGame);
         }

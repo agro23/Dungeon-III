@@ -5,11 +5,41 @@
 <div class = "container well-gametop text-center">
   <h2>You are @Model["pc"].GetName()</h2>
     <!-- <p>if it's not Dark, you can see the following...</p> -->
-    @if(@Model["room"].GetLight() == true) {
-      <p>You are in: @Model["room"].GetName()</p>
+    @if(@Model["room"].GetLight() == true)
+    {
+      <p>You are in: @Model["room"].GetName() It has an id of @Model["room"].GetId() and a Map Id of @Model["room"].GetMapId()</p>
 
       <p>@Model["room"].GetShortDescription()</p>
 
+
+      <p>There are exits to the: </p>
+      @if (@Model["map"].Count > 0)
+      {
+        Dictionary<int, int[]> temp = @Model["map"];
+        int[] x = temp[@Model["room"].GetMapId()];
+        string[] exits = new string[] {"North", "Northeast", "East", "Southeast", "South", "Southwest", "West", "Northwest", "Up", "Down", "Hidden"};
+        for (int exit= 0; exit < x.Length-1; exit++) {
+            if (x[exit] !=0)
+            {
+                if (@Model["room"].GetLight())
+                {
+                  <a href="/game/room/@x[exit]">@exits[exit]</a>
+                }
+                else
+                {
+                  if (@Model["pc"].HasLight() > 0)
+                  {
+                    <p>@Model["pc"].HasLight()</p>
+                    <a href="/game/room/@x[exit]">@exits[exit]</a>
+                  }
+                  else
+                  {
+                    <p>A Darkened Door</p>
+                  }
+                }
+            }
+        }
+      }
 
 
       @if(@Model["npc"].Count > 0)
@@ -36,22 +66,11 @@
               <!-- if in the map (int[] x = temp[@Model["room"].GetMapId()];) if (int[11] !=0) then you can Search -->
         </ul>
 
-        <p>There are exits to the: </p>
-        @if (@Model["map"].Count > 0)
-        {
-          Dictionary<int, int[]> temp = @Model["map"];
-          int[] x = temp[@Model["room"].GetMapId()];
-          string[] exits = new string[] {"North", "Northeast", "East", "Southeast", "South", "Southwest", "West", "Northwest", "Up", "Down", "Hidden"};
-          for (int exit= 0; exit < x.Length-1; exit++) // Want to make sure that they can't see a hidden exit without searching.
-          {
 
-              if (x[exit] !=0)
-              {
-                  <a href="/game/room/@x[exit]">@exits[exit]</a>
-              }
-          }
-        }
-      } else {
-          <h2>It's too dark to see!</h2>
-      }
+    }
+    else
+    {
+      <h2>It is too dark to go there!</h2>
+    }
+
 </div>

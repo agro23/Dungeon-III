@@ -64,9 +64,18 @@ namespace Dungeon.Models
             //             {N,NE,E,SE,S,SW,W,NW,U,D,H});
             map.Add(1,new[]{0,0,0,0,2,0,0,0,0,0,0});
             map.Add(2,new[]{1,0,4,0,3,0,5,0,0,0,0});
-            map.Add(3,new[]{2,0,4,0,0,0,5,0,0,0,0});
+            map.Add(3,new[]{2,0,4,0,6,0,5,0,0,0,0});
             map.Add(4,new[]{0,0,0,0,3,0,2,0,0,0,0});
             map.Add(5,new[]{0,0,2,0,3,0,0,0,0,0,0});
+
+            map.Add(6,new[]{3,0,7,0,0,0,8,0,0,0,0});
+
+            map.Add(7,new[]{0,0,0,0,0,0,6,0,0,0,0});
+
+            map.Add(8,new[]{0,0,0,0,0,0,6,0,9,0,0}); // up to attic
+            map.Add(9,new[]{0,0,0,0,0,0,0,0,0,8,10}); // down from attic and also to hidden room
+            map.Add(10,new[]{0,0,0,0,0,0,0,0,0,0,9}); // back from hidden but have to make sure that it is also visible when you unhide room #9
+
             return map;
         }
 

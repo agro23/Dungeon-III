@@ -15,16 +15,18 @@ namespace Dungeon.Models
         private string _fullDescription;
         private bool _light;
         private string _commands;
+        private int _roomMapId;
         private int _id;
         // We no longer declare _RoomId here
 
-        public Room(string name, string shortDescription="", string fullDescription="", bool light=true, string commands="", int id = 0)
+        public Room(string name, string shortDescription="", string fullDescription="", bool light=true, string commands="", int roomMapId=0, int id = 0)
         {
             _name = name;
             _shortDescription = shortDescription;
             _fullDescription = fullDescription;
             _light = light;
             _commands = commands;
+            _roomMapId = roomMapId;
             _id = id;
         }
 
@@ -77,6 +79,12 @@ namespace Dungeon.Models
             return _id;
         }
 
+        public int GetMapId()
+
+        {
+            return _roomMapId; // Get the mapId from the constructor
+        }
+
         public static List<Room> GetAll()
         {
             List<Room> allRooms = new List<Room> {};
@@ -93,7 +101,9 @@ namespace Dungeon.Models
               string roomFullDescription = rdr.GetString(3);
               bool roomLight = rdr.GetBoolean(4);
               string roomCommands = rdr.GetString(5);
-              Room newRoom = new Room(roomName, roomShortDescription, roomFullDescription, roomLight, roomCommands, roomId);
+              int roomMapId = rdr.GetInt32(6);
+
+              Room newRoom = new Room(roomName, roomShortDescription, roomFullDescription, roomLight, roomCommands, roomId, roomMapId);
               allRooms.Add(newRoom);
             }
             conn.Close();
@@ -128,7 +138,7 @@ namespace Dungeon.Models
             }
         }
 
-        public void Update(string newName, string newShortDescription, string newFullDescription, bool newLight, string newCommands, int id = 0)
+        public void Update(string newName, string newShortDescription, string newFullDescription, bool newLight, string newCommands, int newRoomMapId, int id = 0)
         {
 
             MySqlConnection conn = DB.Connection();
@@ -140,7 +150,8 @@ namespace Dungeon.Models
             short_description = @newShortDescription,
             full_description = @newFullDescription,
             light = @newLight,
-            commands = @newCommands
+            commands = @newCommands,
+            roomMapId = @roomMapId
              WHERE id = @searchId;";
 
              // search id
@@ -186,6 +197,12 @@ namespace Dungeon.Models
             commands.Value = newCommands;
             cmd.Parameters.Add(commands);
 
+            // roomMapId
+            MySqlParameter roomMapId = new MySqlParameter();
+            roomMapId.ParameterName = "@roomMapId";
+            roomMapId.Value = newRoomMapId;
+            cmd.Parameters.Add(roomMapId);
+
             cmd.ExecuteNonQuery();
             _name = newName;
             conn.Close();
@@ -215,6 +232,7 @@ namespace Dungeon.Models
             string roomFullDescription = "";
             bool roomLight = false; // let's see what happens
             string roomCommands = "";
+            int roomMapId = 0;
 
             while(rdr.Read())
             {
@@ -224,9 +242,10 @@ namespace Dungeon.Models
               roomFullDescription = rdr.GetString(3);
               roomLight = rdr.GetBoolean(4);
               roomCommands = rdr.GetString(5);
+              roomMapId = rdr.GetInt32(6);
             }
 
-            Room newRoom = new Room(roomName, roomShortDescription, roomFullDescription, roomLight, roomCommands, roomId);
+            Room newRoom = new Room(roomName, roomShortDescription, roomFullDescription, roomLight, roomCommands, roomMapId, roomId);
             conn.Close();
             if (conn != null)
             {

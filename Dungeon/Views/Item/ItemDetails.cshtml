@@ -16,7 +16,7 @@
     </div>
     <div class="col-sm-8">
       <div class="well update-form">
-        <form class="form-group" action="/items/update/@Model[1].GetId()" method="post">
+        <form class="form-group" action="/items/update/@Model[1].GetId()/@Model[2]" method="post">
           <label for="updatedPCName">Item Name</label>
           <input class="form-control" type="text" name="updatedItemName" value="@Model[1].GetName()" required>
           <label for="updatedPCName">Item Type</label>
@@ -39,7 +39,7 @@
                 {
                   foreach (var room in @Model[0])
                   {
-                    <option value="@room.GetId()">@room.GetName()</option>
+                    <option value="@room.GetMapId()">@room.GetName()</option>
                   }
                 }
               }

@@ -233,8 +233,8 @@ namespace Dungeon.Models
         {
             MySqlConnection conn = DB.Connection();
             conn.Open();
-
-            MySqlCommand cmd = new MySqlCommand("INSERT INTO contents VALUES (@ItemId, @RoomId);", conn);
+            Console.WriteLine("In Item.cs AddToContents has a room Id of " + roomId);
+            MySqlCommand cmd = new MySqlCommand(@"INSERT INTO contents (rooms, items) VALUES (@RoomId, @ItemId);", conn);
 
             MySqlParameter itemIdParameter = new MySqlParameter();
             itemIdParameter.ParameterName = "@ItemId";
@@ -244,8 +244,19 @@ namespace Dungeon.Models
             roomIdParameter.ParameterName = "@RoomId";
             roomIdParameter.Value = roomId;
 
+            Console.WriteLine("@ItemId is: " + _id + " and roomId is: " + roomId);
+
             cmd.Parameters.Add(itemIdParameter);
-            cmd.ExecuteNonQuery();
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch(Exception ex)
+            {
+               Console.WriteLine("Exception in AddToContents is: " + ex + " and roomId is: " + roomId);
+            }
+
 
             if (conn != null)
             {

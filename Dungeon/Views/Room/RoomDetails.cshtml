@@ -5,12 +5,14 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="well-lesspadded footer">
+
         <h1>Room Details</h1>
-        <h3>Room: @Model.GetName()</h3>
-        <h3>Short Description: @Model.GetShortDescription()</h3>
-        <h3>Full Description: @Model.GetFullDescription()</h3>
-        <h3>Lighted: @Model.GetLight()</h3>
-        <h3>Commands: @Model.GetCommands()</h3>
+        <h3>Room Map Number: @Model[1].GetMapId();
+        <h3>Room: @Model[1].GetName()</h3>
+        <h3>Short Description: @Model[1].GetShortDescription()</h3>
+        <h3>Full Description: @Model[1].GetFullDescription()</h3>
+        <h3>Lighted: @Model[1].GetLight()</h3>
+        <h3>Commands: @Model[1].GetCommands()</h3>
       </div>
     </div>
 </div>
@@ -19,14 +21,16 @@
 
   <div class="col-sm-12">
     <div class="well-lesspadded footer">
-      <form class="form-group" action="/rooms/update/@Model.GetId()" method="post">
+      <form class="form-group" action="/rooms/update/@Model[1].GetId()" method="post">
+        <label for="updatedRoomMapId">Room Map Number</label>
+        <input class="form-control" type="text" name="updatedRoomMapId" value="@Model[1].GetMapId()" required>
         <label for="updatedRoomName">Room Name</label>
-        <input class="form-control" type="text" name="updatedRoomName" value="@Model.GetName()" required>
+        <input class="form-control" type="text" name="updatedRoomName" value="@Model[1].GetName()" required>
         <label for="updatedPCName">Short Description</label>
-        <input class="form-control" type="text area" name="updatedRoomShortDescription" value="@Model.GetShortDescription()" required>
+        <input class="form-control" type="text area" name="updatedRoomShortDescription" value="@Model[1].GetShortDescription()" required>
         <label for="updatedRoomFullDescription">Full Description</label>
-        <input class="form-control" type="text area" name="updatedRoomFullDescription" value="@Model.GetFullDescription()" required>
-        @if (@Model.GetLight())
+        <input class="form-control" type="text area" name="updatedRoomFullDescription" value="@Model[1].GetFullDescription()" required>
+        @if (@Model[1].GetLight())
         {
           <div class="radio">
             <label>
@@ -57,7 +61,7 @@
           </div>
         }
         <label for="updatedRoomCommands">Usable Commands</label>
-        <input class="form-control" type="text" name="updatedRoomCommands" value="@Model.GetCommands()" required>
+        <input class="form-control" type="text" name="updatedRoomCommands" value="@Model[1].GetCommands()" required>
         <button type="submit" class="btn btn-danger">Update Room</button>
       </form>
     </div>

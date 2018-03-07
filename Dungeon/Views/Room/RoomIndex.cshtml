@@ -4,8 +4,8 @@
 <div class="container text-center">
   <div class="well viewer">
     <h1>Room Editor</h1>
-    <h4>Select Room to View</h4>
     <form class="form-group" action="/rooms/details/{id}" method="post">
+    <h4>Select Room to View</h4>
       <select class="form-control" name="id" id="id">
       <option value="0">Empty</option>
       @{
@@ -13,7 +13,7 @@
         {
           foreach (var room in @Model)
           {
-            <option value="@room.GetId()">@room.GetName()</option>
+            <option value="@room.GetMapId()">@room.GetName()</option>
           }
         }
       }

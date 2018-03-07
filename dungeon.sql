@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 06, 2018 at 01:55 AM
+-- Generation Time: Mar 07, 2018 at 11:30 PM
 -- Server version: 5.6.35
 -- PHP Version: 7.0.15
 
@@ -33,6 +33,18 @@ CREATE TABLE `contents` (
   `rooms` int(11) NOT NULL,
   `items` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `contents`
+--
+
+INSERT INTO `contents` (`id`, `rooms`, `items`) VALUES
+(1, 2, 2),
+(2, 3, 3),
+(3, 3, 3),
+(6, 9, 2),
+(7, 2, 4),
+(8, 2, 4);
 
 -- --------------------------------------------------------
 
@@ -66,8 +78,9 @@ CREATE TABLE `items` (
 
 INSERT INTO `items` (`id`, `name`, `type`, `special`, `magic`) VALUES
 (1, 'Nasty Sword', 'Weapon', '+5 Vorpal', 1),
-(2, 'Suit of Armor', 'Armor', '+5', 1),
-(3, 'Suit of Armor', '', '', 0);
+(2, 'Suit of Shiny Armor', 'Armor', '+5', 1),
+(3, 'Suit of Armor', 'Armor', 'Rusty', 0),
+(4, 'Long, gnarled twig', 'Stick', '@=\"Magic Wand of Fireball\"', 1);
 
 -- --------------------------------------------------------
 
@@ -129,8 +142,8 @@ CREATE TABLE `pcs` (
 
 INSERT INTO `pcs` (`id`, `name`, `type`, `hp`, `ac`, `damage`, `lvl`, `exp`, `room_id`) VALUES
 (1, 'Not Empty', 'Dragon Librarian\'s Butt', 0, 333, 2, 1, 0, 2),
-(2, 'Fred the Knight', 'Fighter', 10, 8, 8, 1, 0, 1),
-(3, 'James Orcus', 'Package Swiffer', 14, 0, 3, 2, 0, 5),
+(2, 'Fred the Knight', 'Fighter', 10, 8, 8, 1, 0, 8),
+(3, 'James Orcus', 'Package Swiffer', 14, 0, 3, 44, 0, 5),
 (4, 'Joe the Mountain', 'Ninja Sculpture', 44, 222, 0, 63, 3500, 33),
 (5, 'Derf The Straggler', 'Monk', 14, 6, 8, 1, 100, 1);
 
@@ -160,9 +173,11 @@ INSERT INTO `rooms` (`id`, `name`, `short_description`, `full_description`, `lig
 (3, 'Test Room', 'test', 'test', 1, 'test', 3),
 (4, 'Another Room', 'Test', 'Test', 1, 'Test', 4),
 (5, 'Hallway', 'Test', 'Test', 1, 'Move', 5),
-(8, 'Dining Hall', 'A small room with crude tables and a cooking fire.', 'What the short description said written large.', 1, 'Get, Eat', 0),
-(9, 'Throne Room', 'A throne room.', 'A really really big throne room.', 1, 'Sit', 0),
-(10, 'Chamber of Sorrows', 'derf', 'fred derf fred derf', 1, 'fred', 0);
+(6, 'Dining Hall', 'A small room with crude tables and a cooking fire.', 'What the short description said written large.', 1, 'Get, Eat', 6),
+(7, 'Throne Room', 'A throne room.', 'A really really big throne room.', 1, 'Sit', 7),
+(8, 'Chamber of Sorrows', 'derf', 'fred derf fred derf', 1, 'fred', 8),
+(9, 'Creepy Attic', 'A dusty attic full of stale air and dangerous footing.', 'A dusty, dank, attic with water stains in the corners and rotted wood beams caving in part of the ceiling.', 1, 'SEARCH', 9),
+(10, 'Secret Room', 'A tiny little room where someone stashed their treasures for safe keeping.', 'You can cross through a tiny door and enter this chamber, but it\'s so small it\'s easier to just reach in and grab for stuff. ', 1, 'SEARCH', 10);
 
 --
 -- Indexes for dumped tables
@@ -222,7 +237,7 @@ ALTER TABLE `rooms`
 -- AUTO_INCREMENT for table `contents`
 --
 ALTER TABLE `contents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `inventory`
 --
@@ -232,7 +247,7 @@ ALTER TABLE `inventory`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `loot`
 --
@@ -252,7 +267,7 @@ ALTER TABLE `pcs`
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- Constraints for dumped tables
 --

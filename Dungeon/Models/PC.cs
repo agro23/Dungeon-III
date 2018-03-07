@@ -361,11 +361,12 @@ namespace Dungeon.Models
             while(rdr.Read())
             {
               int itemId = rdr.GetInt32(0);
+              // int pcId = rdr.GetInt32(1);
               string itemName = rdr.GetString(1);
               string itemType = rdr.GetString(2);
               string itemSpecial = rdr.GetString(3);
               bool itemMagic = rdr.GetBoolean(4);
-              Item newItem = new Item(itemName, itemType, itemSpecial, itemMagic, itemId);
+              Item newItem = Item.Find(itemId);
               items.Add(newItem);
             }
             conn.Close();
@@ -375,6 +376,45 @@ namespace Dungeon.Models
             }
         return items;
         }
+
+        public List<Item> GetInventory()
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT * FROM inventory WHERE id = @PCId;";
+            MySqlParameter pcIdParameter = new MySqlParameter();
+            pcIdParameter.ParameterName = "@PCId";
+            pcIdParameter.Value = _id;
+            cmd.Parameters.Add(pcIdParameter);
+
+            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+            List<Item> items = new List<Item>{};
+
+            while(rdr.Read())
+            {
+              int itemId = rdr.GetInt32(0);
+              int pcId = rdr.GetInt32(1);
+
+              // string itemName = rdr.GetString(1);
+              // string itemType = rdr.GetString(2);
+              // string itemSpecial = rdr.GetString(3);
+              // bool itemMagic = rdr.GetBoolean(4);
+              // Item newItem = Item.Find(itemId);
+              // items.Add(newItem);
+              Item newItem = Item.Find(itemId);
+              items.Add(newItem);
+              Console.WriteLine("item is: "  + newItem.GetName());
+            }
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        return items;
+        }
+
+
 
     }
 }

@@ -7,13 +7,11 @@
     <!-- <p>if it's not Dark, you can see the following...</p> -->
     @if(@Model["room"].GetLight() == true) {
       <p>You are in: @Model["room"].GetName()</p>
-<<<<<<< HEAD
-      <!--GetLog() returns a list of Rooms that have been visited-->
-      <p>@Model["room"].GetShortDescription()</p>
-=======
+
+
       <p>@Model["room"].GetShortDescription()</p>
 
->>>>>>> 9b1462c1dc2cfaa25bcbbc59000fd9c240bb1648
+
 
       @if(@Model["npc"].Count > 0)
       {
@@ -30,14 +28,10 @@
               <p>There is a @items.GetName() here.</p>
           }
       }
-
       <p>You can do the following things: </p>
         <ul>
-<<<<<<< HEAD
-              <li>@Model["command"], <a href="/game/look/@Model["room"].GetId()">Look</a>, Move</li>
-=======
-              <li>@Model["command"], Move, <a href="/game/look/@Model["room"].GetId()">Look</a></li>
->>>>>>> 9b1462c1dc2cfaa25bcbbc59000fd9c240bb1648
+
+              <li><a href="/game/look/@Model["room"].GetId()">Look</a>, <a href="/game/inventory/@Model["pc"].GetId()">Inventory</a>,  <a href="/game/select/@Model["room"].GetId()">Get</a> </li>
         </ul>
 
         <p>There are exits to the: </p>
@@ -53,13 +47,9 @@
               {
                   <a href="/game/room/@x[exit]">@exits[exit]</a>
               }
-
           }
-
         }
-      }
-      else
-      {
+      } else {
           <h2>It's too dark to see!</h2>
       }
 </div>

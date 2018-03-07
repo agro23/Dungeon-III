@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+<div class = "container well-gametop text-center">
+<h3>You Are Carrying: </h3>
+@if(@Model["stuff"].Count > 0)
+{
+  @foreach(var item in @Model["stuff"])
+  {
+    <h3>@item.GetName()</h3>
+  }
+}
+else
+{
+  <h3>No Items.</h3>
+}
+
+<a href="/game">Back</a>
+</div>

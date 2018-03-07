@@ -27,13 +27,10 @@
               <p>There is a @items.GetName() here.</p>
           }
       }
-
       <p>You can do the following things: </p>
         <ul>
 
-
-              <li>@Model["command"], Move, <a href="/game/look/@Model["room"].GetId()">Look</a></li>
-
+              <li><a href="/game/look/@Model["room"].GetId()">Look</a>, <a href="/game/inventory/@Model["pc"].GetId()">Inventory</a>,  <a href="/game/select/@Model["room"].GetId()">Get</a> </li>
         </ul>
 
         <p>There are exits to the: </p>
@@ -49,13 +46,9 @@
               {
                   <a href="/game/room/@x[exit]">@exits[exit]</a>
               }
-
           }
-
         }
-      }
-      else
-      {
+      } else {
           <h2>It's too dark to see!</h2>
       }
 </div>

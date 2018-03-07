@@ -51,19 +51,21 @@ namespace Dungeon.Controllers
       else {}
 
 
+
       thisItem.Update(temp_Name, temp_Type, temp_Special, temp_MagicBool);
 
       Item thisUpdatedItem = Item.Find(itemId);
 
       thisItem.AddToContents(Int32.Parse(Request.Form["id"])); // *****
-      Console.WriteLine("Inside ItemDetails in Item Controller id from the form is: " + Int32.Parse(Request.Form["id"]));
+      Console.WriteLine("Inside ItemDetails in Item Controller id from the form is: " + Int32.Parse(Request.Form["roomId"]));
 
       List<object> tempList = new List<object>{};
       tempList.Add(Room.GetAll());
       tempList.Add(thisItem);
       // tempList.Add(itemId);
-      tempList.Add(Int32.Parse(Request.Form["id"]));
+      tempList.Add(Int32.Parse(Request.Form["roomId"])); // ***********************************************
 
+      // tempList.Add(ROOMID); // *******************************************************
       // return View("ItemDetails", thisUpdatedItem);
       return View("ItemDetails", tempList);
 
@@ -83,7 +85,7 @@ namespace Dungeon.Controllers
       if (temp_MagicInt == 1){temp_MagicBool = true;}
       else {}
       Console.WriteLine("in ItemAndRoomDetails itemId and roomId are: " + itemId + ", " + roomId);
-      Console.WriteLine("Item And Room Details id from the form is: " + Int32.Parse(Request.Form["id"]));
+      Console.WriteLine("Item And Room Details id from the form is: " + Int32.Parse(Request.Form["roomId"]));
 
       thisItem.Update(temp_Name, temp_Type, temp_Special, temp_MagicBool);
 

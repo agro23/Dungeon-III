@@ -98,6 +98,14 @@ A project for the advanced database week of C#. Rules to follow.
 
 **March 5th Update as Dungeon II**
 
+* Add ability to put Item in Room to Item Editor.
+
+* Add Move
+
+* Add Look
+
+* Add Get /Drop
+
 ## Setup/Installation Requirements
 
 * Clone the git repository from 'https://github.com/agro23/Dungeon.git'.

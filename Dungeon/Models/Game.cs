@@ -118,13 +118,16 @@ namespace Dungeon.Models
             roomId.Value = Id;
             cmd.Parameters.Add(roomId);
 
-            cmd.CommandText = @"SELECT * FROM contents WHERE id = @roomId;";
+            Console.WriteLine("In Game.GetAllItems the room id is: " + Id );
+
+            cmd.CommandText = @"SELECT * FROM contents WHERE rooms = @roomId;";
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
 
             while(rdr.Read())
             {
-              int itemId = rdr.GetInt32(0);
 
+              int itemId = rdr.GetInt32(2);
+              Console.WriteLine("In Game.GetAllItems the item read is: " + Item.Find(itemId).GetName());
               // string itemName = rdr.GetString(1);
               // string itemType = rdr.GetString(2);
               // string itemSpecial = rdr.GetString(3);

@@ -6,7 +6,7 @@
   {
     @foreach(var items in @Model["item"])
     {
-      <p><a href="#">@items.GetName()</a> | <a href="/game/inventory/{pcId}">GET</a> | <a href="/game">BACK</a> </p>
+      <p>@items.GetName() | <a href="/game/inventory/@Model["pc"]/@items.GetId()">GET</a> | <a href="/game">BACK</a> </p>
     }
   }
 </div>

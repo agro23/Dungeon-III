@@ -29,8 +29,11 @@
       }
       <p>You can do the following things: </p>
         <ul>
-
-              <li><a href="/game/look/@Model["room"].GetId()">Look</a>, <a href="/game/inventory/@Model["pc"].GetId()">Inventory</a>,  <a href="/game/select/@Model["room"].GetId()">Get</a> </li>
+              <li><a href="/game/look/@Model["room"].GetId()">Look</a></li>
+              <li><a href="/game/inventory/@Model["pc"].GetId()">Inventory</a></li>
+              <!-- if you have items in your inventory, you can do Examine -->
+              <li><a href="/game/select/@Model["room"].GetId()">Get</a></li>
+              <!-- if in the map (int[] x = temp[@Model["room"].GetMapId()];) if (int[11] !=0) then you can Search -->
         </ul>
 
         <p>There are exits to the: </p>
@@ -39,7 +42,7 @@
           Dictionary<int, int[]> temp = @Model["map"];
           int[] x = temp[@Model["room"].GetMapId()];
           string[] exits = new string[] {"North", "Northeast", "East", "Southeast", "South", "Southwest", "West", "Northwest", "Up", "Down", "Hidden"};
-          for (int exit= 0; exit < x.Length; exit++)
+          for (int exit= 0; exit < x.Length-1; exit++) // Want to make sure that they can't see a hidden exit without searching.
           {
 
               if (x[exit] !=0)

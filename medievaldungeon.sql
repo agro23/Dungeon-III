@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 08, 2018 at 01:34 AM
+-- Generation Time: Mar 07, 2018 at 11:30 PM
 -- Server version: 5.6.35
 -- PHP Version: 7.0.15
 
@@ -142,7 +142,7 @@ CREATE TABLE `pcs` (
 
 INSERT INTO `pcs` (`id`, `name`, `type`, `hp`, `ac`, `damage`, `lvl`, `exp`, `room_id`) VALUES
 (1, 'Not Empty', 'Dragon Librarian\'s Butt', 0, 333, 2, 1, 0, 2),
-(2, 'Fred the Knight', 'Fighter', 10, 8, 8, 1, 0, 3),
+(2, 'Fred the Knight', 'Fighter', 10, 8, 8, 1, 0, 8),
 (3, 'James Orcus', 'Package Swiffer', 14, 0, 3, 44, 0, 5),
 (4, 'Joe the Mountain', 'Ninja Sculpture', 44, 222, 0, 63, 3500, 33),
 (5, 'Derf The Straggler', 'Monk', 14, 6, 8, 1, 100, 1);

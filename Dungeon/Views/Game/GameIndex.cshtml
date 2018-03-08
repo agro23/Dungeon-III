@@ -21,13 +21,13 @@
         for (int exit= 0; exit < x.Length-1; exit++) {
             if (x[exit] !=0)
             {
-                if (@Model["room"].GetLight())
+                if (@Model["room"].GetLight() == true)
                 {
                   <a href="/game/room/@x[exit]">@exits[exit]</a>
                 }
                 else
                 {
-                  if (@Model["pc"].HasLight() > 0)
+                  if (@Model["pc"].HasLight() == true)
                   {
                     <p>@Model["pc"].HasLight()</p>
                     <a href="/game/room/@x[exit]">@exits[exit]</a>

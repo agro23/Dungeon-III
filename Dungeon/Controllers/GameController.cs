@@ -26,7 +26,7 @@ namespace Dungeon.Controllers
 
           myMap = Game.GetMap();
           myGame.Add("map", myMap);
-
+          myGame.Add("AllRooms", Room.GetAll());
           Console.WriteLine("Room inside /game is: " + Room.Find(newPC.GetRoomId()).GetName());
 
           return View("GameIndex", myGame);
@@ -38,16 +38,16 @@ namespace Dungeon.Controllers
           string message = "";
           PC newPC = PC.Find(2);
           Room tempRoom = Room.Find(roomId);
-          if ( newPC.HasLight() )
-          {
+          // if ( newPC.HasLight() )
+          // {
               newPC.SetRoomId(roomId);
               newPC.Update(newPC.GetName(), newPC.GetPCType(), newPC.GetHP(), newPC.GetAC(), newPC.GetDamage(), newPC.GetLVL(), newPC.GetEXP(), newPC.GetRoomId());
               Console.WriteLine("newPC thinks its room is: " + newPC.GetRoomId());
-          }
-          else
-          {
-              message="It's too dark to go that way";
-          }
+          // }
+          // else
+          // {
+          //     message="It's too dark to go that way";
+          // }
           Dictionary<int, int[]> myMap = new Dictionary<int, int[]>{};
           Dictionary<string, object> myGame = new Dictionary<string, object>{{"room", Room.Find(newPC.GetRoomId()) }};
           //           Dictionary<string, object> myGame = new Dictionary<string, object>{"room", Room.Find(PC.GetRoomId()) };

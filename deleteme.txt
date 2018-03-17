@@ -1,0 +1,124 @@
+## Planning
+
+1. Configuration/dependencies X
+  * This should include ALL dependencies. ????
+  * It should also include WHERE they are defined and used in the project
+  * It could include a short description of what each does for you
+
+2. Specs
+  * Spec 1: Description, input, output.
+  * Spec 2: Description, input, output.
+
+3. Integration
+  * Initial routes or index pages with all dependencies in Controller/index.html head
+  * Template/html page for ...
+  * Template/html page for ...
+  * Template/html page for ... (one for each route/integrated user story)
+  * Display...
+  * Integrate feature that...
+
+4. UX/UI
+  * Include and modify bootstrap/materialize/Sass etc.
+  * Develop custom style
+
+5. Polish
+  * Refactor minor portion of...
+  * Delete unused...
+  * Make README awesome
+
+
+  const webpackConfig = require('./webpack.config.js');
+  module.exports = function(config) {
+    config.set({
+      basePath: '',
+      frameworks: ['jquery-3.2.1', 'jasmine'],
+      files: [
+        'src/*.js',
+        'spec/*spec.js'
+      ],
+      webpack: webpackConfig,
+      exclude: [
+      ],
+      preprocessors: {
+        'src/*.js': ['webpack'],
+        'spec/*spec.js': ['webpack']
+      },
+      plugins: [
+        'karma-jquery',
+        'karma-webpack',
+        'karma-jasmine',
+        'karma-chrome-launcher',
+        'karma-jasmine-html-reporter'
+      ],
+      reporters: ['progress', 'kjhtml'],
+      port: 9876,
+      colors: true,
+      logLevel: config.LOG_INFO,
+      autoWatch: true,
+      browsers: ['Chrome'],
+      singleRun: false,
+      concurrency: Infinity
+    })
+  }
+
+  * Create a method to calculate a life expectancy given an age and a gender
+    - EXPECTED INPUT
+    - EXPECTED OUTPUT
+
+  * Create a method to convert a given birthdate into seconds
+    - return age in seconds
+      * test to see if it receives the age
+      * test to see if it calculates an expected result
+
+  * Create a method to acquire a date, convert it into seconds, and compare the difference between that date and the current date in seconds.
+    - Instantiate a date object
+      * let date = new Date();
+    - return the difference in seconds
+
+  * Create a method to Validate the date submitted by the user by making sure that it isn't past the current date.
+    - if it is past the current date, reject the entry and set everything to 0
+
+  * Create a method to calculate if a person born on a given date has exceeded their life expectancy.
+    - call the life
+    - return how many years past their normal expectancy they have lived.
+
+  * In Main.js create a prompt to acquire user answers to the date and gender questions
+
+  * In Main.js use the above methods to process the user input
+
+
+
+  const webpackConfig = require('./webpack.config.js');
+
+module.exports = function(config) {
+  config.set({
+    basePath: '',
+    frameworks: ['jquery-3.2.1', 'jasmine'],
+    files: [
+      'src/*.js',
+      'spec/*spec.js'
+    ],
+    webpack: webpackConfig,
+    exclude: [
+    ],
+    preprocessors: {
+      'src/*.js': ['webpack'],
+      'spec/*spec.js': ['webpack']
+    },
+    plugins: [
+      'karma-jquery',
+      'karma-webpack',
+      'karma-jasmine',
+      'karma-chrome-launcher',
+      'karma-jasmine-html-reporter'
+    ],
+    reporters: ['progress', 'kjhtml'],
+    port: 9876,
+    colors: true,
+    logLevel: config.LOG_INFO,
+    autoWatch: true,
+    browsers: ['Chrome'],
+    singleRun: false,
+    concurrency: Infinity
+  })
+}
